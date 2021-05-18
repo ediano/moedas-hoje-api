@@ -3,11 +3,13 @@ import { KucoinApiResponse, KucoinTicker, Exchange, Delay } from '@/utils/types'
 type Serialize = {
   domain: string
   delay: Delay
+  assets: string[]
   itens: { data: KucoinApiResponse }
 }
 
 export const serializeKucoin = ({
   domain,
+  assets,
   delay,
   itens
 }: Serialize): Exchange => {
@@ -15,6 +17,7 @@ export const serializeKucoin = ({
 
   return {
     source: domain,
+    assets,
     delay,
     data: ticker.map((item: KucoinTicker) => ({
       ask: item.last,

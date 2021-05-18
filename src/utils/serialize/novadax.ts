@@ -3,11 +3,13 @@ import { NovadaxApiResponse, Exchange, Delay } from '@/utils/types'
 type Serialize = {
   domain: string
   delay: Delay
+  assets: string[]
   itens: { data: NovadaxApiResponse[] }
 }
 
 export const serializeNovadax = ({
   domain,
+  assets,
   delay,
   itens
 }: Serialize): Exchange => {
@@ -15,6 +17,7 @@ export const serializeNovadax = ({
 
   return {
     source: domain,
+    assets,
     delay,
     data: data.map((item: NovadaxApiResponse) => ({
       ask: item.ask,

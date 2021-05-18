@@ -14,22 +14,24 @@ const exchanges = {
 }
 
 type Serialize = {
-  config: { domain?: string; cacheTime?: string }
+  config: { domain?: string; cacheTime?: string; assets?: string[] }
   data: any
 }
 
 export const serialize = (itens: any): Exchange[] => {
-  return itens.map((item: Serialize): Exchange => {
-    const { data } = item
-    const { domain, cacheTime } = item.config
+  return itens.map(
+    (item: Serialize): Exchange => {
+      const { data } = item
+      const { domain, cacheTime, assets } = item.config
 
-    const [exchange] = domain.split('.')
+      const [exchange] = domain.split('.')
 
-    const delay = {
-      externalCacheTime: cacheTime,
-      internalCacheTime: `${MASTER} to ${SECONDARY} seconds`
+      const delay = {
+        externalCacheTime: cacheTime,
+        internalCacheTime: `${MASTER} to ${SECONDARY} seconds`
+      }
+
+      return exchanges[exchange]({ domain, assets, delay, itens: data })
     }
-
-    return exchanges[exchange]({ domain, delay, itens: data })
-  })
+  )
 }

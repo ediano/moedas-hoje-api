@@ -2,17 +2,20 @@ import { AwesomeapiApiResponse, Exchange, Delay } from '@/utils/types'
 
 type Serialize = {
   domain: string
+  assets: string[]
   delay: Delay
   itens: AwesomeapiApiResponse
 }
 
 export const serializeAwesomeapi = ({
   domain,
+  assets,
   delay,
   itens
 }: Serialize): Exchange => {
   return {
     source: domain,
+    assets,
     delay,
     data: Object.keys(itens).map(item => {
       return {
