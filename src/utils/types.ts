@@ -8,7 +8,12 @@ type Data = {
 
 export type Delay = { externalCacheTime: string; internalCacheTime: string }
 
-export type Exchange = { source: string; delay: Delay; data: Data[] }
+export type Exchange = {
+  source: string
+  assets: string[]
+  delay: Delay
+  data: Data[]
+}
 
 export type NovadaxApiResponse = Data
 

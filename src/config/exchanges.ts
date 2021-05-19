@@ -2,6 +2,7 @@ export const exchanges = [
   {
     name: 'NovaDAX',
     domain: 'novadax.com',
+    assets: ['digital'],
     cacheTime: 'N/A',
     paths: {
       v1: {
@@ -13,6 +14,7 @@ export const exchanges = [
   {
     name: 'Kucoin',
     domain: 'kucoin.com',
+    assets: ['digital'],
     cacheTime: 'N/A',
     paths: {
       v1: {
@@ -24,6 +26,7 @@ export const exchanges = [
   {
     name: 'AwesomeAPI',
     domain: 'awesomeapi.com.br',
+    assets: ['digital', 'traditional'],
     cacheTime: '30s',
     paths: {
       v1: {

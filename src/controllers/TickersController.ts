@@ -3,14 +3,16 @@ import { exchanges } from '@/config/exchanges'
 
 import { serialize } from '@/utils/serialize'
 
+type Show = { source?: string; asset?: string }
+
 export class TickersController {
   async index() {
     const responses = await Promise.allSettled(
       exchanges.map(exchange => {
-        const { domain, cacheTime } = exchange
+        const { domain, cacheTime, assets } = exchange
         const { baseURL, tickers } = exchange.paths.v1
 
-        return api({ baseURL, domain, cacheTime }).get(tickers)
+        return api({ baseURL, domain, cacheTime, assets }).get(tickers)
       })
     )
 
@@ -21,14 +23,18 @@ export class TickersController {
     return serialize(data)
   }
 
-  async show(source: string) {
+  async show({ source, asset }: Show) {
     const responses = await Promise.allSettled(
       exchanges.map(exchange => {
-        const { domain, cacheTime } = exchange
+        const { domain, cacheTime, assets } = exchange
         const { baseURL, tickers } = exchange.paths.v1
 
-        if (source === domain) {
-          return api({ baseURL, domain, cacheTime }).get(tickers)
+        if (source === domain && !asset) {
+          return api({ baseURL, domain, cacheTime, assets }).get(tickers)
+        }
+
+        if (!source && assets.includes(asset)) {
+          return api({ baseURL, domain, cacheTime, assets }).get(tickers)
         }
 
         return undefined
@@ -39,6 +45,6 @@ export class TickersController {
       .map(response => response.status === 'fulfilled' && response.value)
       .filter(response => response)
 
-    return serialize(data).find(exchange => exchange)
+    return serialize(data)
   }
 }

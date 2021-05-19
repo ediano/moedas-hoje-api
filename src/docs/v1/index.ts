@@ -12,6 +12,10 @@ export const v1 = {
             {
               pathUrl: '/v1/coins/tickers?source=novadax.com',
               message: 'Lita todas as moedas e seus valores por fonte'
+            },
+            {
+              pathUrl: '/v1/coins/tickers?asset=traditional',
+              message: 'Lita todas as moedas e seus valores por tipo de ativo'
             }
           ]
         },
