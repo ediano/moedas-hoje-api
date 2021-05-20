@@ -58,5 +58,17 @@ export const exchanges = [
         tickers: 'spot/tickers'
       }
     }
+  },
+  {
+    name: 'KickEX',
+    domain: 'kickex.com',
+    assets: ['digital'],
+    cacheTime: 'N/A',
+    paths: {
+      v1: {
+        baseURL: 'https://gate.kickex.com/api/v1',
+        tickers: 'market/allTickers'
+      }
+    }
   }
 ]
