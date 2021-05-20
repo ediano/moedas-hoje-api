@@ -39,3 +39,17 @@ export type AwesomeapiApiResponse = {
     timestamp: string
   }
 }
+
+export type CryptoTicker = {
+  i: string
+  k: number
+  h: number
+  l: number
+  t: number
+}
+
+export type CryptoApiResponse = {
+  result: {
+    data: CryptoTicker[]
+  }
+}

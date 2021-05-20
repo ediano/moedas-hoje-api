@@ -34,5 +34,17 @@ export const exchanges = [
         tickers: 'all'
       }
     }
+  },
+  {
+    name: 'Crypto',
+    domain: 'crypto.com',
+    assets: ['digital'],
+    cacheTime: 'N/A',
+    paths: {
+      v1: {
+        baseURL: 'https://api.crypto.com/v2',
+        tickers: 'public/get-ticker'
+      }
+    }
   }
 ]
