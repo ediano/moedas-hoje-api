@@ -37,8 +37,6 @@ type Serialize = {
 
 export const serialize = (itens: any): MoedasHojeApiResponse[] => {
   return itens.map((item: Serialize) => {
-    console.log(item.config)
-
     const { data } = item
     const { source, cacheTime, assets } = item.config
 
