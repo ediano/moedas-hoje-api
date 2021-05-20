@@ -25,8 +25,7 @@ export type KucoinTicker = {
 }
 
 export type KucoinApiResponse = {
-  time: number
-  ticker: KucoinTicker[]
+  data: { time: number; ticker: KucoinTicker[] }
 }
 
 export type AwesomeapiApiResponse = {
