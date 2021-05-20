@@ -4,7 +4,7 @@ type Serialize = {
   domain: string
   delay: Delay
   assets: string[]
-  itens: { data: KucoinApiResponse }
+  itens: KucoinApiResponse
 }
 
 export const serializeKucoin = ({
