@@ -1,25 +1,34 @@
-import { CryptoApiResponse, CryptoTicker, Exchange, Delay } from '@/utils/types'
+import { MoedasHojeApiResponse } from '@/utils/serialize'
 
-type Serialize = {
-  domain: string
-  delay: Delay
-  assets: string[]
-  itens: CryptoApiResponse
+type CryptoTicker = {
+  i: string
+  k: number
+  h: number
+  l: number
+  t: number
 }
 
+type CryptoApiResponse = {
+  result: {
+    data: CryptoTicker[]
+  }
+}
+
+type Crypto = MoedasHojeApiResponse<CryptoApiResponse>
+
 export const serializeCrypto = ({
-  domain,
+  source,
   assets,
   delay,
-  itens
-}: Serialize): Exchange => {
-  const { data } = itens.result
+  data
+}: Crypto): MoedasHojeApiResponse => {
+  const itens = data.result.data
 
   return {
-    source: domain,
+    source,
     assets,
     delay,
-    data: data.map((item: CryptoTicker) => ({
+    data: itens.map((item: CryptoTicker) => ({
       ask: String(item.k),
       symbol: String(item.i),
       high24h: String(item.h),

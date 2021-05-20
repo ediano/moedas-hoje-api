@@ -1,25 +1,30 @@
-import { NovadaxApiResponse, Exchange, Delay } from '@/utils/types'
+import { MoedasHojeApiResponse } from '@/utils/serialize'
 
-type Serialize = {
-  domain: string
-  delay: Delay
-  assets: string[]
-  itens: { data: NovadaxApiResponse[] }
+type NovadaxTicker = {
+  ask: string
+  high24h: string
+  low24h: string
+  symbol: string
+  timestamp: number
 }
 
+type NovadaxApiResponse = { data: NovadaxTicker[] }
+
+type Novadax = MoedasHojeApiResponse<NovadaxApiResponse>
+
 export const serializeNovadax = ({
-  domain,
+  source,
   assets,
   delay,
-  itens
-}: Serialize): Exchange => {
-  const { data } = itens
+  data
+}: Novadax): MoedasHojeApiResponse => {
+  const itens = data.data
 
   return {
-    source: domain,
+    source,
     assets,
     delay,
-    data: data.map((item: NovadaxApiResponse) => ({
+    data: itens.map((item: NovadaxTicker) => ({
       ask: item.ask,
       symbol: item.symbol,
       high24h: item.high24h,
