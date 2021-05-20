@@ -46,5 +46,17 @@ export const exchanges = [
         tickers: 'public/get-ticker'
       }
     }
+  },
+  {
+    name: 'Gate',
+    domain: 'gate.io',
+    assets: ['digital'],
+    cacheTime: 'N/A',
+    paths: {
+      v1: {
+        baseURL: 'https://api.gateio.ws/api/v4',
+        tickers: 'spot/tickers'
+      }
+    }
   }
 ]
