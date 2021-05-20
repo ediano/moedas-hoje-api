@@ -1,6 +1,5 @@
 import { api } from '@/services/api'
 import { exchanges } from '@/config/exchanges'
-
 import { serialize } from '@/utils/serialize'
 
 type Show = { source?: string; asset?: string }
@@ -12,7 +11,7 @@ export class TickersController {
         const { domain, cacheTime, assets } = exchange
         const { baseURL, tickers } = exchange.paths.v1
 
-        return api({ baseURL, domain, cacheTime, assets }).get(tickers)
+        return api({ baseURL, source: domain, cacheTime, assets }).get(tickers)
       })
     )
 
@@ -30,11 +29,15 @@ export class TickersController {
         const { baseURL, tickers } = exchange.paths.v1
 
         if (source === domain && !asset) {
-          return api({ baseURL, domain, cacheTime, assets }).get(tickers)
+          return api({ baseURL, source: domain, cacheTime, assets }).get(
+            tickers
+          )
         }
 
         if (!source && assets.includes(asset)) {
-          return api({ baseURL, domain, cacheTime, assets }).get(tickers)
+          return api({ baseURL, source: domain, cacheTime, assets }).get(
+            tickers
+          )
         }
 
         return undefined

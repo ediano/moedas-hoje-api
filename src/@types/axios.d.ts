@@ -1,7 +1,7 @@
 import 'axios'
 
 type Config = {
-  domain?: string
+  source?: string
   cacheTime?: string
   assets?: string[]
 }

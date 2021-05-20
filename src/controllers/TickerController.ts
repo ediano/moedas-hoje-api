@@ -1,4 +1,5 @@
-import { Exchange } from '@/utils/types'
+import { MoedasHojeApiResponse } from '@/utils/serialize'
+
 import { api } from '@/services/api'
 import { site } from '@/config/site'
 
@@ -8,7 +9,9 @@ export class TickerController {
   async index(symbol: string) {
     const { baseURL, tickersUrl } = site.v1
 
-    const response = await api({ baseURL }).get<Exchange[]>(tickersUrl)
+    const response = await api({ baseURL }).get<MoedasHojeApiResponse[]>(
+      tickersUrl
+    )
 
     if (response.status !== 200) return undefined
 
@@ -26,7 +29,7 @@ export class TickerController {
   async show({ symbol, source }: Show) {
     const { baseURL, tickersSourceQuery } = site.v1
 
-    const response = await api({ baseURL }).get<Exchange>(
+    const response = await api({ baseURL }).get<MoedasHojeApiResponse>(
       tickersSourceQuery + source
     )
 

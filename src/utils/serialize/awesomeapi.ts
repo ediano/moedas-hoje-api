@@ -1,29 +1,35 @@
-import { AwesomeapiApiResponse, Exchange, Delay } from '@/utils/types'
+import { MoedasHojeApiResponse } from '@/utils/serialize'
 
-type Serialize = {
-  domain: string
-  assets: string[]
-  delay: Delay
-  itens: AwesomeapiApiResponse
+type AwesomeapiApiResponse = {
+  [key: string]: {
+    code: string
+    codein: string
+    high: string
+    low: string
+    ask: string
+    timestamp: string
+  }
 }
 
+type Awesomeapi = MoedasHojeApiResponse<AwesomeapiApiResponse>
+
 export const serializeAwesomeapi = ({
-  domain,
+  source,
   assets,
   delay,
-  itens
-}: Serialize): Exchange => {
+  data
+}: Awesomeapi): MoedasHojeApiResponse => {
   return {
-    source: domain,
+    source,
     assets,
     delay,
-    data: Object.keys(itens).map(item => {
+    data: Object.keys(data).map(item => {
       return {
-        ask: itens[item].ask,
-        symbol: `${itens[item].code}_${itens[item].codein}`,
-        high24h: itens[item].high,
-        low24h: itens[item].low,
-        timestamp: Number(itens[item].timestamp)
+        ask: data[item].ask,
+        symbol: `${data[item].code}_${data[item].codein}`,
+        high24h: data[item].high,
+        low24h: data[item].low,
+        timestamp: Number(data[item].timestamp)
       }
     })
   }

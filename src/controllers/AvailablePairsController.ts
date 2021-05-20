@@ -1,4 +1,5 @@
-import { Exchange } from '@/utils/types'
+import { MoedasHojeApiResponse } from '@/utils/serialize'
+
 import { api } from '@/services/api'
 import { site } from '@/config/site'
 
@@ -6,7 +7,9 @@ export class AvailablePairsController {
   async index() {
     const { baseURL, tickersUrl } = site.v1
 
-    const response = await api({ baseURL }).get<Exchange[]>(tickersUrl)
+    const response = await api({ baseURL }).get<MoedasHojeApiResponse[]>(
+      tickersUrl
+    )
 
     if (response.status !== 200) return undefined
 
@@ -22,7 +25,7 @@ export class AvailablePairsController {
   async show(source: string) {
     const { baseURL, tickersSourceQuery } = site.v1
 
-    const response = await api({ baseURL }).get<Exchange>(
+    const response = await api({ baseURL }).get<MoedasHojeApiResponse>(
       tickersSourceQuery + source
     )
 
