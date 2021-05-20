@@ -22,12 +22,14 @@ export const serializeKickex = ({
     source,
     assets,
     delay,
-    data: data.map((item: KickexTicker) => ({
-      ask: item.bestAsk,
-      symbol: item.pairName.split('/').join('_'),
-      high24h: item.highestPrice,
-      low24h: item.lowestPrice,
-      timestamp: item.timestamp
-    }))
+    data: data
+      .map((item: KickexTicker) => ({
+        ask: item.bestAsk,
+        symbol: item.pairName.split('/').join('_'),
+        high24h: item.highestPrice,
+        low24h: item.lowestPrice,
+        timestamp: item.timestamp
+      }))
+      .filter(item => item.ask)
   }
 }
