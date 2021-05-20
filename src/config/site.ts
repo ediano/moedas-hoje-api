@@ -13,7 +13,7 @@ export const site = {
   domain: 'moedashoje.com.br',
   v1: {
     baseURL: baseURL + '/v1',
-    tickersUrl: 'coins/tickers',
+    tickers: 'coins/tickers',
     tickersSourceQuery: 'coins/tickers?source='
   }
 }
