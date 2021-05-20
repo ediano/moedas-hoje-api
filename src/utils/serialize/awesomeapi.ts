@@ -23,14 +23,16 @@ export const serializeAwesomeapi = ({
     source,
     assets,
     delay,
-    data: Object.keys(data).map(item => {
-      return {
-        ask: data[item].ask,
-        symbol: `${data[item].code}_${data[item].codein}`,
-        high24h: data[item].high,
-        low24h: data[item].low,
-        timestamp: Number(data[item].timestamp)
-      }
-    })
+    data: Object.keys(data)
+      .map(item => {
+        return {
+          ask: data[item].ask,
+          symbol: `${data[item].code}_${data[item].codein}`,
+          high24h: data[item].high,
+          low24h: data[item].low,
+          timestamp: Number(data[item].timestamp)
+        }
+      })
+      .filter(item => item.ask)
   }
 }

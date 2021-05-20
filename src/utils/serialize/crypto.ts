@@ -28,12 +28,14 @@ export const serializeCrypto = ({
     source,
     assets,
     delay,
-    data: itens.map((item: CryptoTicker) => ({
-      ask: String(item.k),
-      symbol: String(item.i),
-      high24h: String(item.h),
-      low24h: String(item.l),
-      timestamp: item.t
-    }))
+    data: itens
+      .map((item: CryptoTicker) => ({
+        ask: String(item.k),
+        symbol: String(item.i),
+        high24h: String(item.h),
+        low24h: String(item.l),
+        timestamp: item.t
+      }))
+      .filter(item => item.ask)
   }
 }

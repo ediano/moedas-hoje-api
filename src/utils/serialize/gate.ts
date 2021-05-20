@@ -23,12 +23,14 @@ export const serializeGate = ({
     source,
     assets,
     delay,
-    data: data.map((item: GateTicker) => ({
-      ask: item.lowest_ask,
-      symbol: item.currency_pair,
-      high24h: item.high_24h,
-      low24h: item.low_24h,
-      timestamp
-    }))
+    data: data
+      .map((item: GateTicker) => ({
+        ask: item.lowest_ask,
+        symbol: item.currency_pair,
+        high24h: item.high_24h,
+        low24h: item.low_24h,
+        timestamp
+      }))
+      .filter(item => item.ask)
   }
 }
