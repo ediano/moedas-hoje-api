@@ -2,6 +2,7 @@ import { serializeNovadax } from './novadax'
 import { serializeKucoin } from './kucoin'
 import { serializeAwesomeapi } from './awesomeapi'
 import { serializeCrypto } from './crypto'
+import { serializeGate } from './gate'
 
 type Data = {
   ask: string
@@ -27,7 +28,8 @@ const exchanges = {
   novadax: serializeNovadax,
   kucoin: serializeKucoin,
   awesomeapi: serializeAwesomeapi,
-  crypto: serializeCrypto
+  crypto: serializeCrypto,
+  gate: serializeGate
 }
 
 type Serialize = {
