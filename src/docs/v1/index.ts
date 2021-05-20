@@ -3,6 +3,13 @@ export const v1 = {
     version: 'v1',
     pathUrl: '/v1',
     resources: {
+      exchanges: [
+        {
+          method: 'GET',
+          pathUrl: '/v1/exchanges/all',
+          message: 'Lista todas as exchanges cadastradas e disponível na API'
+        }
+      ],
       coins: [
         {
           method: 'GET',
