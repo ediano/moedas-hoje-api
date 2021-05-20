@@ -24,12 +24,14 @@ export const serializeNovadax = ({
     source,
     assets,
     delay,
-    data: itens.map((item: NovadaxTicker) => ({
-      ask: item.ask,
-      symbol: item.symbol,
-      high24h: item.high24h,
-      low24h: item.low24h,
-      timestamp: item.timestamp
-    }))
+    data: itens
+      .map((item: NovadaxTicker) => ({
+        ask: item.ask,
+        symbol: item.symbol,
+        high24h: item.high24h,
+        low24h: item.low24h,
+        timestamp: item.timestamp
+      }))
+      .filter(item => item.ask)
   }
 }

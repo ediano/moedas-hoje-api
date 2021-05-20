@@ -25,12 +25,14 @@ export const serializeKucoin = ({
     source,
     assets,
     delay,
-    data: ticker.map((item: KucoinTicker) => ({
-      ask: item.last,
-      symbol: item.symbol.split('-').join('_'),
-      high24h: item.high,
-      low24h: item.low,
-      timestamp: time
-    }))
+    data: ticker
+      .map((item: KucoinTicker) => ({
+        ask: item.last,
+        symbol: item.symbol.split('-').join('_'),
+        high24h: item.high,
+        low24h: item.low,
+        timestamp: time
+      }))
+      .filter(item => item.ask)
   }
 }
