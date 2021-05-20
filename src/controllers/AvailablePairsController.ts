@@ -5,10 +5,10 @@ import { site } from '@/config/site'
 
 export class AvailablePairsController {
   async index() {
-    const { baseURL, tickersUrl } = site.v1
+    const { baseURL, tickers } = site.v1
 
     const response = await api({ baseURL }).get<MoedasHojeApiResponse[]>(
-      tickersUrl
+      tickers
     )
 
     if (response.status !== 200) return undefined
