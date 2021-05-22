@@ -4,6 +4,7 @@ import { serializeAwesomeapi } from './awesomeapi'
 import { serializeCrypto } from './crypto'
 import { serializeGate } from './gate'
 import { serializeKickex } from './kickex'
+import { serializeBraziliex } from './braziliex'
 
 type Data = {
   ask: string
@@ -31,7 +32,8 @@ const exchanges = {
   awesomeapi: serializeAwesomeapi,
   crypto: serializeCrypto,
   gate: serializeGate,
-  kickex: serializeKickex
+  kickex: serializeKickex,
+  braziliex: serializeBraziliex
 }
 
 type Serialize = {

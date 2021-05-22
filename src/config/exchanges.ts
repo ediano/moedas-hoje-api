@@ -70,5 +70,17 @@ export const exchanges = [
         tickers: 'market/allTickers'
       }
     }
+  },
+  {
+    name: 'Brazilliex',
+    domain: 'braziliex.com',
+    assets: ['digital'],
+    cacheTime: 'N/A',
+    paths: {
+      v1: {
+        baseURL: 'https://braziliex.com/api/v1',
+        tickers: 'public/ticker'
+      }
+    }
   }
 ]
