@@ -40,17 +40,23 @@ type Serialize = {
 }
 
 export const serialize = (itens: any): MoedasHojeApiResponse[] => {
-  return itens.map((item: Serialize) => {
-    const { data } = item
-    const { source, cacheTime, assets } = item.config
+  return itens
+    .map((item: Serialize) => {
+      const { data } = item
+      const { source, cacheTime, assets } = item.config
 
-    const [exchange] = source.split('.')
+      const [exchange] = source.split('.')
 
-    const delay = {
-      externalCacheTime: cacheTime,
-      internalCacheTime: `${MASTER} to ${SECONDARY} seconds`
-    }
+      if (!exchanges[exchange]) {
+        return undefined
+      }
 
-    return exchanges[exchange]({ source, assets, delay, data })
-  })
+      const delay = {
+        externalCacheTime: cacheTime,
+        internalCacheTime: `${MASTER} to ${SECONDARY} seconds`
+      }
+
+      return exchanges[exchange]({ source, assets, delay, data })
+    })
+    .filter((data: MoedasHojeApiResponse) => data)
 }
