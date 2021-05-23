@@ -82,5 +82,17 @@ export const exchanges = [
         tickers: 'public/ticker'
       }
     }
+  },
+  {
+    name: 'FTX',
+    domain: 'ftx.com',
+    assets: ['digital'],
+    cacheTime: 'N/A',
+    paths: {
+      v1: {
+        baseURL: 'https://ftx.com/api',
+        tickers: 'markets'
+      }
+    }
   }
 ]
