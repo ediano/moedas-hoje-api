@@ -39,7 +39,7 @@ export class MarketAverageController {
 
         const highLow24h = Number(item.high24h) > 0 && Number(item.low24h) > 0
 
-        let sum24h = 0
+        let sum24h = 1
 
         if (count[item.symbol] && highLow24h) {
           sum24h = ++count[item.symbol].records24h
@@ -48,8 +48,6 @@ export class MarketAverageController {
         if (count[item.symbol] && !highLow24h) {
           sum24h = count[item.symbol].records24h
         }
-
-        if (highLow24h) sum24h = 1
 
         const ask = count[item.symbol]
           ? Number(count[item.symbol].ask) + Number(item.ask)
