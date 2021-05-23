@@ -24,7 +24,7 @@ const ticker = async (req: Req, res: NextApiResponse) => {
   if (!source && !data?.length) {
     return res.status(500).json({
       message: 'Internal server error 500',
-      type: 'symbol_INTERNAL_SERVER_ERROR_CODE_NOT_FOUND'
+      type: 'SYMBOL_INTERNAL_SERVER_ERROR_CODE_NOT_FOUND'
     })
   }
 
