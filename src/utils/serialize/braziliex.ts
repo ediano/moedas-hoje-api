@@ -27,6 +27,8 @@ export const serializeBraziliex = ({
     delay,
     data: Object.keys(data)
       .map(item => {
+        if (!data[item].last) return undefined
+
         return {
           ask: String(data[item].last),
           symbol: data[item].market.toUpperCase(),
@@ -35,6 +37,6 @@ export const serializeBraziliex = ({
           timestamp
         }
       })
-      .filter(item => item.ask)
+      .filter(item => item)
   }
 }

@@ -51,9 +51,7 @@ export const serialize = (itens: any): MoedasHojeApiResponse[] => {
 
       const [exchange] = source.split('.')
 
-      if (!exchanges[exchange]) {
-        return undefined
-      }
+      if (!exchanges[exchange]) return undefined
 
       const delay = {
         externalCacheTime: cacheTime,
