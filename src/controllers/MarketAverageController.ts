@@ -24,7 +24,8 @@ export class MarketAverageController {
 
     const count: {
       [key: string]: {
-        records: number
+        recordsAsk: number
+        records24h: number
         ask: string
         high24h: string
         low24h: string
@@ -34,7 +35,21 @@ export class MarketAverageController {
 
     for (const data of response.data) {
       for (const item of data.data) {
-        const sum = count[item.symbol] ? ++count[item.symbol].records : 1
+        const sumAsk = count[item.symbol] ? ++count[item.symbol].recordsAsk : 1
+
+        const highLow24h = Number(item.high24h) > 0 && Number(item.low24h) > 0
+
+        let sum24h = 0
+
+        if (count[item.symbol] && highLow24h) {
+          sum24h = ++count[item.symbol].records24h
+        }
+
+        if (count[item.symbol] && !highLow24h) {
+          sum24h = count[item.symbol].records24h
+        }
+
+        if (highLow24h) sum24h = 1
 
         const ask = count[item.symbol]
           ? Number(count[item.symbol].ask) + Number(item.ask)
@@ -50,7 +65,8 @@ export class MarketAverageController {
 
         Object.assign(count, {
           [item.symbol]: {
-            records: sum,
+            recordsAsk: sumAsk,
+            records24h: sum24h,
             ask: String(ask),
             high24h: String(high24h),
             low24h: String(low24h),
@@ -69,9 +85,9 @@ export class MarketAverageController {
       source: process.env.DOMAIN_URL,
       delay,
       data: Object.keys(count).map(item => ({
-        ask: getAverage(count[item].ask, count[item].records),
-        high24h: getAverage(count[item].high24h, count[item].records),
-        low24h: getAverage(count[item].low24h, count[item].records),
+        ask: getAverage(count[item].ask, count[item].recordsAsk),
+        high24h: getAverage(count[item].high24h, count[item].records24h),
+        low24h: getAverage(count[item].low24h, count[item].records24h),
         symbol: count[item].symbol,
         timestamp
       }))
