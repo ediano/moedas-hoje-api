@@ -24,24 +24,26 @@ export class TickersController {
 
   async show({ source, asset }: Show) {
     const responses = await Promise.allSettled(
-      exchanges.map(exchange => {
-        const { domain, cacheTime, assets } = exchange
-        const { baseURL, tickers } = exchange.paths.v1
+      exchanges
+        .filter(exchange => {
+          const { domain, assets } = exchange
+          return (
+            (source === domain && !asset) || (!source && assets.includes(asset))
+          )
+        })
+        .map(exchange => {
+          const { domain, cacheTime, assets } = exchange
+          const { baseURL, tickers } = exchange.paths.v1
+          if (!source && assets.includes(asset)) {
+            return api({ baseURL, source: domain, cacheTime, assets }).get(
+              tickers
+            )
+          }
 
-        if (source === domain && !asset) {
           return api({ baseURL, source: domain, cacheTime, assets }).get(
             tickers
           )
-        }
-
-        if (!source && assets.includes(asset)) {
-          return api({ baseURL, source: domain, cacheTime, assets }).get(
-            tickers
-          )
-        }
-
-        return undefined
-      })
+        })
     )
 
     const data = responses
