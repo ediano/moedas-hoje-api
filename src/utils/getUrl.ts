@@ -1,6 +1,5 @@
 const isNodeDev = process.env.NODE_ENV === 'development'
 const isVercelDev = process.env.VERCEL_ENV === 'development'
-const isVercelPre = process.env.VERCEL_ENV === 'preview'
 const baseURL = process.env.DOMAIN_URL || 'https://api.moedashoje.com.br'
 
 type Props = {
@@ -15,7 +14,7 @@ export const getUrl = ({ path }: Props) => {
 }
 
 export const getPath = ({ path }: Props) => {
-  if (isNodeDev || isVercelDev || isVercelPre) {
+  if (isNodeDev || isVercelDev) {
     return `/api/${path}`
   }
   return `/${path}`
