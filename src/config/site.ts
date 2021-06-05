@@ -1,18 +1,13 @@
-let baseURL = 'https://api.moedashoje.com.br'
+import { path } from '@/utils/getUrl'
 
-if (process.env.VERCEL_ENV === 'development') {
-  baseURL = 'http://localhost:3000'
-}
-
-if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3000/api'
-}
+const name = 'Moedas Hoje API'
+const domain = 'moedashoje.com.br'
 
 export const site = {
-  name: 'Moedas Hoje API',
-  domain: 'moedashoje.com.br',
+  name,
+  domain,
   v1: {
-    baseURL: baseURL + '/v1',
+    baseURL: path('/v1'),
     tickers: 'coins/tickers',
     tickersSourceQuery: 'coins/tickers?source='
   }
