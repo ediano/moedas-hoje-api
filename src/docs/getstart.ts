@@ -1,4 +1,4 @@
-import { path } from '@/utils/getUrl'
+import { getPath } from '@/utils/getUrl'
 
 export const getstart = {
   data: {
@@ -6,6 +6,6 @@ export const getstart = {
     repo: 'https://github.com/ediano/moedas-hoje-api',
     url: 'https://api.moedashoje.com.br',
     license: 'MIT',
-    api: [{ version: 'v1', pathUrl: `${path('v1')}` }]
+    api: [{ version: 'v1', pathUrl: `${getPath({ path: 'v1' })}` }]
   }
 }
