@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const getUrl = ({ path }: Props) => {
-  if (isNodeDev || isVercelDev || isVercelPre) {
+  if (isNodeDev || isVercelDev) {
     return `/api/${path}`
   }
   return `${baseURL}/${path}`
