@@ -12,9 +12,9 @@ Este projeto foi amadurecendo de acordo a minha necessidade, em alguns momentos 
 
 ## Documentação
 
-A documentação deste projeto está em fase de desenvolvimento, porém você pode acessar alguns exemplos de consumo em
+A documentação deste projeto pode ser encontrada em
 
-* API v1: https://api.moedashoje.com.br/v1
+* DOCS: https://doc.moedashoje.com.br ou https://api.moedashoje.com.br/v1
 
 ## Contribuir
 
