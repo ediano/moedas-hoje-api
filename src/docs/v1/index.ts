@@ -15,11 +15,6 @@ export const v1 = {
       coins: [
         {
           method: 'GET',
-          pathUrl: `${getPath({ path: 'v1' })}/coins/market-average`,
-          message: 'Lista todas as moedas calculando valores médio de mercado'
-        },
-        {
-          method: 'GET',
           pathUrl: `${getPath({ path: 'v1' })}/coins/tickers`,
           message: 'Lista todas as fontes e os valores de seus pares de moedas',
           resourcesQueries: [
