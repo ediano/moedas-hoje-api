@@ -67,7 +67,7 @@ vercel dev
 
 Depois de executar o comando as rotas ficam disponível em: http://localhost:3000
 
-> Obs: Você deve ter uma conta na Vercel para que este comando funciona localmente, mais informações em: https://vercel.com/docs/cli#commands/dev e https://vercel.com/cli.
+> Obs: Você deve ter uma conta na Vercel para que este comando funciona localmente, mais informações em: https://vercel.com/docs/cli#commands/dev e https://vercel.com/.
 
 ## Autor
 
