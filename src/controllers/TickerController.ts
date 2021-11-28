@@ -26,7 +26,7 @@ export class TickerController {
     return data
   }
 
-  async show({ symbol, source }: Show) {
+  async show({ symbol, source = '' }: Show) {
     const { baseURL, tickersSourceQuery } = site.v1
 
     const response = await api({ baseURL }).get<MoedasHojeApiResponse>(

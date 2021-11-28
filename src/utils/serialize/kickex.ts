@@ -23,9 +23,8 @@ export const serializeKickex = ({
     assets,
     delay,
     data: data
+      .filter(item => !!item.bestAsk)
       .map((item: KickexTicker) => {
-        if (!item.bestAsk) return undefined
-
         return {
           ask: item.bestAsk,
           symbol: item.pairName.split('/').join('_'),
@@ -34,6 +33,5 @@ export const serializeKickex = ({
           timestamp: item.timestamp
         }
       })
-      .filter(item => item)
   }
 }

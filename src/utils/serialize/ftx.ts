@@ -20,26 +20,22 @@ export const serializeFtx = ({
   delay,
   data
 }: Ftx): MoedasHojeApiResponse => {
-  const itens = data.result
+  const result = data.result
 
   return {
     source,
     assets,
     delay,
-    data: itens
+    data: result
+      .filter(item => item.type === 'spot')
       .map((item: FtxTicker) => {
-        if (item.type === 'spot') {
-          return {
-            ask: String(item.ask),
-            symbol: `${item.baseCurrency}_${item.quoteCurrency}`,
-            high24h: '0',
-            low24h: '0',
-            timestamp
-          }
+        return {
+          ask: String(item.ask),
+          symbol: `${item.baseCurrency}_${item.quoteCurrency}`,
+          high24h: '0',
+          low24h: '0',
+          timestamp
         }
-
-        return undefined
       })
-      .filter(item => item)
   }
 }

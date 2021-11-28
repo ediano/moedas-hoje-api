@@ -72,18 +72,6 @@ export const exchanges = [
     }
   },
   {
-    name: 'Brazilliex',
-    domain: 'braziliex.com',
-    assets: ['digital'],
-    cacheTime: 'N/A',
-    paths: {
-      v1: {
-        baseURL: 'https://braziliex.com/api/v1',
-        tickers: 'public/ticker'
-      }
-    }
-  },
-  {
     name: 'FTX',
     domain: 'ftx.com',
     assets: ['digital'],
