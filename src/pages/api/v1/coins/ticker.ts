@@ -10,7 +10,8 @@ const tickerController = new TickerController()
 type Req = { query: { symbol: string; source?: string } } & NextApiRequest
 
 const ticker = async (req: Req, res: NextApiResponse) => {
-  const { symbol, source } = req.query
+  const symbol = req.query.symbol?.toUpperCase()
+  const source = req.query.source
 
   if (!symbol) {
     return res.status(400).json({
@@ -19,7 +20,7 @@ const ticker = async (req: Req, res: NextApiResponse) => {
     })
   }
 
-  const data = !source && (await tickerController.index(symbol))
+  const data = await (!source ? tickerController.index(symbol) : [])
 
   if (!source && !data?.length) {
     return res.status(500).json({

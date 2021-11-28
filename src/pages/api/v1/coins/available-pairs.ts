@@ -11,9 +11,9 @@ const availablePairsController = new AvailablePairsController()
 type Req = { query: { source?: string } } & NextApiRequest
 
 const availablePairs = async (req: Req, res: NextApiResponse) => {
-  const { source } = req.query
+  const source = req.query.source
 
-  const data = !source && (await availablePairsController.index())
+  const data = !source ? await availablePairsController.index() : []
 
   if (!source && !data?.length) {
     return res.status(500).json({
