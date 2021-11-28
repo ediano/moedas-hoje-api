@@ -1,6 +1,6 @@
-import { NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export const onNoMatch = (_, res: NextApiResponse) => {
+export const onNoMatch = (req: NextApiRequest, res: NextApiResponse) => {
   return res.status(404).json({
     message: 'Page not found.',
     type: 'not_found',

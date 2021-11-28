@@ -22,7 +22,7 @@ export class TickersController {
     return serialize(data)
   }
 
-  async show({ source, asset }: Show) {
+  async show({ source = '', asset = '' }: Show) {
     const responses = await Promise.allSettled(
       exchanges
         .filter(exchange => {

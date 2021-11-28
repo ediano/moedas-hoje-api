@@ -1,4 +1,4 @@
-import { NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 import { v1 as app } from '@/app/v1'
 import { exchanges } from '@/config/exchanges'
@@ -12,7 +12,7 @@ const delay = {
   internalCacheTime: `${MASTER} to ${SECONDARY} seconds`
 }
 
-const all = async (_, res: NextApiResponse) => {
+const all = async (req: NextApiRequest, res: NextApiResponse) => {
   const data = {
     source: process.env.DOMAIN_URL,
     delay,

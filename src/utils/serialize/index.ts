@@ -4,7 +4,6 @@ import { serializeAwesomeapi } from './awesomeapi'
 import { serializeCrypto } from './crypto'
 import { serializeGate } from './gate'
 import { serializeKickex } from './kickex'
-import { serializeBraziliex } from './braziliex'
 import { serializeFtx } from './ftx'
 
 type Data = {
@@ -34,12 +33,13 @@ const exchanges = {
   crypto: serializeCrypto,
   gate: serializeGate,
   kickex: serializeKickex,
-  braziliex: serializeBraziliex,
   ftx: serializeFtx
 }
 
+type Exchanges = keyof typeof exchanges
+
 type Serialize = {
-  config: { source?: string; cacheTime?: string; assets?: string[] }
+  config: { source: string; cacheTime: string; assets: string[] }
   data: any
 }
 
@@ -51,14 +51,14 @@ export const serialize = (itens: any): MoedasHojeApiResponse[] => {
 
       const [exchange] = source.split('.')
 
-      if (!exchanges[exchange]) return undefined
+      if (!exchanges[exchange as Exchanges]) return undefined
 
       const delay = {
         externalCacheTime: cacheTime,
         internalCacheTime: `${MASTER} to ${SECONDARY} seconds`
       }
 
-      return exchanges[exchange]({ source, assets, delay, data })
+      return exchanges[exchange as Exchanges]({ source, assets, delay, data })
     })
     .filter((data: MoedasHojeApiResponse) => data)
 }
