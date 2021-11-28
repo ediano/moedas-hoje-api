@@ -19,7 +19,7 @@ const tickers = async (req: Req, res: NextApiResponse) => {
     })
   }
 
-  const data = (!source || !asset) && (await tickersController.index())
+  const data = await (!source || !asset ? tickersController.index() : [])
 
   if (!source && !asset && !data?.length) {
     return res.status(404).json({
